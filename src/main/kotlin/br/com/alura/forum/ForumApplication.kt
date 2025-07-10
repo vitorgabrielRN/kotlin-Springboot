@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
 	runApplication<ForumApplication>(*args)
 
 
-	println("ola mundo")
+	println("está funcionando! ")
 
 
 }
