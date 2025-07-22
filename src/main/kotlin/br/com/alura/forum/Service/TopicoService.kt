@@ -5,7 +5,7 @@ import br.com.alura.forum.Model.Topico
 import br.com.alura.forum.Model.Usuario
 import br.com.alura.forum.dto.novoTopicoDto
 import org.springframework.stereotype.Service
-import java.util.Arrays
+import java.util.*
 
 @Service
 class TopicoService(private var topicos: List<Topico> = ArrayList(),
@@ -70,8 +70,16 @@ class TopicoService(private var topicos: List<Topico> = ArrayList(),
                    .findFirst().get()
 
     }
-    fun cadastrar(id:Long): Topico {
 
+    fun cadastrar(dto: novoTopicoDto){
+        topicos.plus(Topico(
+            titulo = dto.titulo,
+            mensagem =  dto.mensagem,
+            curso = cursoService.buscarPorId(dto.idCurso),
+            autor = autorService.buscarPorId(dto.IdAutor)
+
+        ))
     }
+
 
 }
