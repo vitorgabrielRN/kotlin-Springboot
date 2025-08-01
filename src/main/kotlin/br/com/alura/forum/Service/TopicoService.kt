@@ -9,7 +9,8 @@ import java.util.*
 
 @Service
 class TopicoService(private var topicos: List<Topico> = ArrayList(),
-                          private val cursoService: CursoService) {
+                          private val cursoService: CursoService,
+                          private val UsuarioService: UsuarioService) {
 
     init{
         val topico = Topico(
@@ -73,12 +74,13 @@ class TopicoService(private var topicos: List<Topico> = ArrayList(),
 
     fun cadastrar(dto: novoTopicoDto){
         topicos.plus(Topico(
+            id = topicos.size.toLong() + 1,
             titulo = dto.titulo,
-            mensagem =  dto.mensagem,
+            mensagem = dto.mensagem,
             curso = cursoService.buscarPorId(dto.idCurso),
-            autor = autorService.buscarPorId(dto.IdAutor)
-
-        ))
+            autor = UsuarioService.buscarPorId(dto.IdAutor)
+        )
+        )
     }
 
 
